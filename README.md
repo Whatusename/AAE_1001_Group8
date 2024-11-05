@@ -1,4 +1,4 @@
-# AAE_1001_Group8
+# Background of Path Planning to Aviation Engineering
 group task
 NOW we are doing------>TASK1
   Credits:(ATTENTION! please sign your workdone here for credits allocation,if you do not do it YOURSELF, you may can NOT get the additional rewards!)
