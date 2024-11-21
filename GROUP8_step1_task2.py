@@ -50,9 +50,9 @@ class AStarPlanner:
         self.Delta_C1 = 0.2 # cost intensive area 1 modifier
         self.Delta_C2 = 1 # cost intensive area 2 modifier
 
-        self.costPerGrid = 1 
-        self.jet_stream_x_start = 10
-        self.jet_stream_x_end = 50  # Spanning laterally across the map
+        self.costPerGrid = 2
+        self.jet_stream_x_start = -10
+        self.jet_stream_x_end = 60  # Spanning laterally across the map
         self.jet_stream_y = [25, 30]  # Vertical span of 5 units
 
 
