@@ -324,18 +324,19 @@ def main():
             fc_x.append(i)
             fc_y.append(j)
 
-    if show_animation:
-        plt.plot(ox, oy, ".k")
-        plt.plot(sx, sy, "og")
-        plt.plot(gx, gy, "xb")
-        plt.plot(fc_x, fc_y, "oy")
-        plt.plot(tc_x, tc_y, "or")
+    
+    if show_animation:  # pragma: no cover
+        plt.plot(ox, oy, ".k") # plot the obstacle
+        plt.plot(sx, sy, "og") # plot the start position 
+        plt.plot(gx, gy, "xb") # plot the end position
+        plt.plot(fc_x, fc_y, "oy") # plot the cost intensive area 1
+        plt.plot(tc_x, tc_y, "or") # plot the cost intensive area 2
         # Plot checkpoints
-        plt.plot(checkpoint1_x, checkpoint1_y, "^r", markersize=10, label="Checkpoint 1")
-        plt.plot(checkpoint2_x, checkpoint2_y, "^y", markersize=10, label="Checkpoint 2")
-        plt.legend()
-        plt.grid(True)
-        plt.axis("equal")
+        plt.plot(checkpoint1_x, checkpoint1_y, "og", markersize=10)
+        plt.plot(checkpoint2_x, checkpoint2_y, "og", markersize=10)
+        plt.legend()# plot the legend🗺️
+        plt.grid(True) # plot the grid to the plot panel
+        plt.axis("equal") # set the same resolution for x and y axis 
 
     # Initialize planner
     a_star = AStarPlanner(ox, oy, grid_size, robot_radius, fc_x, fc_y, tc_x, tc_y)
@@ -414,150 +415,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-    def main():
-     print(__file__ + " start the A star algorithm demo !!")
-    # start and goal position
-    sx = 0.0  # [m]
-    sy = 0.0  # [m]
-    gx = 50.0  # [m]
-    gy = 30.0  # [m]
-    
-    # Define checkpoints (one in each cost intensive area)
-    checkpoint1_x = 20.0  # Checkpoint in first cost intensive area (red)
-    checkpoint1_y = 30.0
-    checkpoint2_x = 40.0  # Checkpoint in second cost intensive area (yellow)
-    checkpoint2_y = 5.0
-    
-    grid_size = 1  # [m]
-    robot_radius = 1.0  # [m]
 
-    # Set obstacle positions (same as before)
-    ox, oy = [], []
-    for i in range(-10, 60):
-        ox.append(i)
-        oy.append(-10.0)
-    for i in range(-10, 60):
-        ox.append(60.0)
-        oy.append(i)
-    for i in range(-10, 60):
-        ox.append(i)
-        oy.append(60.0)
-    for i in range(-10, 60):
-        ox.append(-10.0)
-        oy.append(i)
 
-    for i in range(20, 50):
-        ox.append(40.0)
-        oy.append(i)
 
-    for i in range(0, 10):
-        ox.append(i)
-        oy.append(-2 * i + 10)
-
-    for i in range(0,30):
-        ox.append(i)
-        oy.append(- i / 3+ 60)
-
-    # set cost intensive areas (same as before)
-    tc_x, tc_y = [], []
-    for i in range(10, 30):
-        for j in range(20, 40):
-            tc_x.append(i)
-            tc_y.append(j)
-    
-    fc_x, fc_y = [], []
-    for i in range(30, 55):
-        for j in range(0, 10):
-            fc_x.append(i)
-            fc_y.append(j)
-
-    if show_animation:
-       plt.plot(ox, oy, ".k")
-       plt.plot(sx, sy, "og")
-       plt.plot(gx, gy, "xb")
-       plt.plot(fc_x, fc_y, "oy")
-       plt.plot(tc_x, tc_y, "or")
-       # Plot checkpoints
-       plt.plot(checkpoint1_x, checkpoint1_y, "og", markersize=5)
-       plt.plot(checkpoint2_x, checkpoint2_y, "og", markersize=5)
-       plt.legend()
-       plt.grid(True)
-       plt.axis("equal")
-
-    # Initialize planner
-    a_star = AStarPlanner(ox, oy, grid_size, robot_radius, fc_x, fc_y, tc_x, tc_y)
-    
-    # Plan path through checkpoints
-    # Start to Checkpoint 1
-    rx1, ry1, t1 = a_star.planning(sx, sy, checkpoint1_x, checkpoint1_y)
-    # Checkpoint 1 to Checkpoint 2
-    rx2, ry2, t2 = a_star.planning(checkpoint1_x, checkpoint1_y, checkpoint2_x, checkpoint2_y)
-    # Checkpoint 2 to Goal
-    rx3, ry3, t3 = a_star.planning(checkpoint2_x, checkpoint2_y, gx, gy)
-
-    # Combine paths
-    rx = rx3 + rx2[1:] + rx1[1:]  # Combine x coordinates
-    ry = ry3 + ry2[1:] + ry1[1:]  # Combine y coordinates
-    total_time = t1 + t2 + t3
-
-    if show_animation:
-        plt.plot(rx, ry, "-r")
-        plt.pause(0.001)
-        plt.show()
-
-    try:
-        # Rest of the cost calculation code remains the same
-        FCR_collect = [0.0,0.0,0.0]
-        CC_collect = [0.0,0.0,0.0]
-        PC_collect = [0,0,0]
-        CT_collect = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-        FC = float(0.8)
-        
-        # Aircraft parameters remain the same
-        FCR_collect[0] = 54
-        CC_collect[0] = float(1800)
-        PC_collect[0] = 200
-        CT_collect[0] = 10
-        CT_collect[3] = 15
-        CT_collect[6] = 20
-        
-        FCR_collect[1] = 84
-        CC_collect[1] = float(2000)
-        PC_collect[1] = 300
-        CT_collect[1] = 15
-        CT_collect[4] = 21
-        CT_collect[7] = 27
-        
-        FCR_collect[2] = 90
-        CC_collect[2] = 2500
-        PC_collect[2] = 350
-        CT_collect[2] = 20
-        CT_collect[5] = 27
-        CT_collect[8] = 34
-        
-        name = ["A321neo", "A330-900neo", "A350-900"]
-        total_cost_collect=[0.0,0.0,0.0]
-
-        # Scenarios calculation with total_time instead of T
-        print("\nsenario 1")
-        FC=0.76
-        for i in range(3):
-            flight = int(math.ceil(3000 / PC_collect[i]))
-            if 12 < flight:
-                print(f"{name[i]} is not suits in senario 1")
-                total_cost_collect[i] = float('inf')
-            else:
-                total_cost_collect[i] = float(calculate_aircraft_cost(FC, total_time, FCR_collect[i], CT_collect[i+3], CC_collect[i]))
-                print(f"the total cost in sen_1 for {name[i]}: {total_cost_collect[i]}")
-        
-        best_index = total_cost_collect.index(min(total_cost_collect))
-        print(f"the best one is {name[best_index]}")
-
-        # Repeat for scenarios 2 and 3 with similar modifications
-        # ... (rest of the scenarios code remains the same)
-
-    except ValueError:
-        print("cost calculation error")
-
-if __name__ == '__main__':
-    main()
