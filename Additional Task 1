@@ -276,14 +276,13 @@ def main():
     gy = 30.0  # [m]
     
     # Define checkpoints (one in each cost intensive area)
-    checkpoint1_x = 20.0  # Checkpoint in first cost intensive area (red)
+    checkpoint1_x = 20.0  # Checkpoint in first cost intensive area （green)
     checkpoint1_y = 30.0
-    checkpoint2_x = 40.0  # Checkpoint in second cost intensive area (yellow)
+    checkpoint2_x = 40.0  # Checkpoint in second cost intensive area (green)
     checkpoint2_y = 5.0
     
     grid_size = 1  # [m]
     robot_radius = 1.0  # [m]
-
     # Set obstacle positions (same as before)
     ox, oy = [], []
     for i in range(-10, 60):
@@ -298,19 +297,15 @@ def main():
     for i in range(-10, 60):
         ox.append(-10.0)
         oy.append(i)
-
     for i in range(20, 50):
         ox.append(40.0)
         oy.append(i)
-
     for i in range(0, 10):
         ox.append(i)
         oy.append(-2 * i + 10)
-
     for i in range(0,30):
         ox.append(i)
         oy.append(- i / 3+ 60)
-
     # set cost intensive areas (same as before)
     tc_x, tc_y = [], []
     for i in range(10, 30):
@@ -323,21 +318,17 @@ def main():
         for j in range(0, 10):
             fc_x.append(i)
             fc_y.append(j)
-
-    
-    if show_animation:  # pragma: no cover
-        plt.plot(ox, oy, ".k") # plot the obstacle
-        plt.plot(sx, sy, "og") # plot the start position 
-        plt.plot(gx, gy, "xb") # plot the end position
-        plt.plot(fc_x, fc_y, "oy") # plot the cost intensive area 1
-        plt.plot(tc_x, tc_y, "or") # plot the cost intensive area 2
-        # Plot checkpoints
-        plt.plot(checkpoint1_x, checkpoint1_y, "og", markersize=10)
-        plt.plot(checkpoint2_x, checkpoint2_y, "og", markersize=10)
-        plt.legend()# plot the legend🗺️
-        plt.grid(True) # plot the grid to the plot panel
-        plt.axis("equal") # set the same resolution for x and y axis 
-
+    if show_animation:
+       plt.plot(ox, oy, ".k")
+       plt.plot(sx, sy, "og")
+       plt.plot(gx, gy, "xb")
+       plt.plot(fc_x, fc_y, "oy")
+       plt.plot(tc_x, tc_y, "or")
+       # Plot checkpoints
+       plt.plot(checkpoint1_x, checkpoint1_y, "og", markersize=10)
+       plt.plot(checkpoint2_x, checkpoint2_y, "og", markersize=10)
+       plt.grid(True)
+       plt.axis("equal")
     # Initialize planner
     a_star = AStarPlanner(ox, oy, grid_size, robot_radius, fc_x, fc_y, tc_x, tc_y)
     
@@ -348,17 +339,14 @@ def main():
     rx2, ry2, t2 = a_star.planning(checkpoint1_x, checkpoint1_y, checkpoint2_x, checkpoint2_y)
     # Checkpoint 2 to Goal
     rx3, ry3, t3 = a_star.planning(checkpoint2_x, checkpoint2_y, gx, gy)
-
     # Combine paths
     rx = rx3 + rx2[1:] + rx1[1:]  # Combine x coordinates
     ry = ry3 + ry2[1:] + ry1[1:]  # Combine y coordinates
     total_time = t1 + t2 + t3
-
     if show_animation:
         plt.plot(rx, ry, "-r")
         plt.pause(0.001)
         plt.show()
-
     try:
         # Rest of the cost calculation code remains the same
         FCR_collect = [0.0,0.0,0.0]
@@ -391,7 +379,6 @@ def main():
         
         name = ["A321neo", "A330-900neo", "A350-900"]
         total_cost_collect=[0.0,0.0,0.0]
-
         # Scenarios calculation with total_time instead of T
         print("\nsenario 1")
         FC=0.76
@@ -406,15 +393,9 @@ def main():
         
         best_index = total_cost_collect.index(min(total_cost_collect))
         print(f"the best one is {name[best_index]}")
-
         # Repeat for scenarios 2 and 3 with similar modifications
         # ... (rest of the scenarios code remains the same)
-
     except ValueError:
         print("cost calculation error")
-
 if __name__ == '__main__':
     main()
-
-
-
