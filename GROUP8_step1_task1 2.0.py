@@ -390,7 +390,7 @@ def main():
                 total_cost_collect[i] = 10000000000000000000000 #make it impassible
             else:
                 total_cost_collect[i] = float(calculate_aircraft_cost(FC,T,FCR_collect[i],CT_collect[i+3],CC_collect[i]))
-                print ("the toltal cost in sen_1 for " + name[i] )
+                print ("the total cost in sen_1 for " + name[i] )
                 print (  total_cost_collect[i])
         c=min(total_cost_collect[0],total_cost_collect[1],total_cost_collect[2])
         final = total_cost_collect.index(c)
@@ -404,7 +404,7 @@ def main():
                 print ( name[i] + " is not suits in senario 2")
             else:
                 total_cost_collect[i] = float(calculate_aircraft_cost(FC,T,FCR_collect[i],CT_collect[i+6],CC_collect[i]))
-                print ("the toltal cost in sen_2 for " + name[i] )
+                print ("the total cost in sen_2 for " + name[i] )
                 print (  total_cost_collect[i] )
         c=min(total_cost_collect[0],total_cost_collect[1],total_cost_collect[2])
         final = total_cost_collect.index(c)
@@ -418,7 +418,7 @@ def main():
                 print ( name[i] + " is not suits in senario 3")
             else:
                 total_cost_collect[i] = float(calculate_aircraft_cost(FC,T,FCR_collect[i],CT_collect[i],CC_collect[i]))
-                print ("the toltal cost in sen_3 for " + name[i] )
+                print ("the total cost in sen_3 for " + name[i] )
                 print (  total_cost_collect[i] )
         c=min(total_cost_collect[0],total_cost_collect[1],total_cost_collect[2])
         final = total_cost_collect.index(c)
