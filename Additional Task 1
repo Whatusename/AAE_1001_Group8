@@ -342,7 +342,9 @@ def main():
     # Combine paths
     rx = rx3 + rx2[1:] + rx1[1:]  # Combine x coordinates
     ry = ry3 + ry2[1:] + ry1[1:]  # Combine y coordinates
-    total_time = t1 + t2 + t3
+    total_time = t1 + t2 + t3# Total time
+    print("Total time: {0}".format(total_time))
+    
     if show_animation:
         plt.plot(rx, ry, "-r")
         plt.pause(0.001)
@@ -383,10 +385,10 @@ def main():
         print("\nsenario 1")
         FC=0.76
         for i in range(3):
-            flight = int(math.ceil(3000 / PC_collect[i]))
+            flight = int(math.ceil(3000 / PC_collect[i]))#calculates the value of flight
             if 12 < flight:
-                print(f"{name[i]} is not suits in senario 1")
-                total_cost_collect[i] = float('inf')
+                print(f"{name[i]} is not suits in senario 1")#if the flight is not suitable
+                total_cost_collect[i] = float('inf')#set the total cost to infinity
             else:
                 total_cost_collect[i] = float(calculate_aircraft_cost(FC, total_time, FCR_collect[i], CT_collect[i+3], CC_collect[i]))
                 print(f"the total cost in sen_1 for {name[i]}: {total_cost_collect[i]}")
@@ -394,7 +396,35 @@ def main():
         best_index = total_cost_collect.index(min(total_cost_collect))
         print(f"the best one is {name[best_index]}")
         # Repeat for scenarios 2 and 3 with similar modifications
-        # ... (rest of the scenarios code remains the same)
+       
+        print("\nsenario 2")
+        FC=0.88
+        for i in range(3):
+            flight = int(math.ceil(1250 / PC_collect[i]))#calculates the value of flight
+            if 15 < flight:
+                print(f"{name[i]} is not suits in senario 2")#if the flight is not suitable
+                total_cost_collect[i] = float('inf')#set the total cost to infinity
+            else:
+                total_cost_collect[i] = float(calculate_aircraft_cost(FC, total_time, FCR_collect[i], CT_collect[i+3], CC_collect[i]))
+                print(f"the total cost in sen_2 for {name[i]}: {total_cost_collect[i]}")
+        
+        best_index = total_cost_collect.index(min(total_cost_collect))
+        print(f"the best one is {name[best_index]}")
+       
+        print("\nsenario 3")
+        FC=0.95
+        for i in range(3):
+            flight = int(math.ceil(2500 / PC_collect[i]))#calculates the value of flight
+            if 25 < flight:
+                print(f"{name[i]} is not suits in senario 3")#if the flight is not suitable
+                total_cost_collect[i] = float('inf')#set the total cost to infinity
+            else:
+                total_cost_collect[i] = float(calculate_aircraft_cost(FC, total_time, FCR_collect[i], CT_collect[i+3], CC_collect[i]))
+                print(f"the total cost in sen_3 for {name[i]}: {total_cost_collect[i]}")
+        
+        best_index = total_cost_collect.index(min(total_cost_collect))
+        print(f"the best one is {name[best_index]}")
+      
     except ValueError:
         print("cost calculation error")
 if __name__ == '__main__':
