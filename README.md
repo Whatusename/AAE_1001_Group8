@@ -14,4 +14,8 @@ The A-star path planning is used to find the shortest path to the destination. B
 ####1.principle
 In this project, there are nodes that during the searching procedure, the computer can’t put into open/close list. By adding these nodes in a sequence, we can add obstacles. The same methods can be used in boundary setting and sensitive area setting. 
 ### 2. Method
-To interpret the nodes into code, the coordinate system is used. The numerous nodes of a line can be translated into a equation using y=ax+b form. For instance, 
+To interpret the nodes into code, the coordinate system is used. The numerous nodes of a line can be translated into a equation using y=ax+b form. For instance, the obstacle in fig.1 can be transformed into y=-2x+10, then we use a loop to generate x(i) range from 0 to 9, which represents the Ox of the nodes. After that, the Oy can be calculated by the fomular, and the nodes can be added (Ox, Oy).  
+  `for i in range(0, 10):  
+        ox.append(i)  
+        oy.append(-2 * i + 10)`  
+For sensetive area, the loop needs to be apply to both Ox and Oy.(As the Fig.2 shows)
